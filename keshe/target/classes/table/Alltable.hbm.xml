@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC     
+       "-//Hibernate/Hibernate Mapping DTD 3.0//EN"     
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+<hibernate-mapping>
+	<class name="table.User" table="[User]" >
+		<id name="User_name" column="User_name">
+			<generator class="assigned"></generator>
+		</id>
+		<property name ="User_ct" column="User_ct"></property>
+		<property name ="User_sex" column="User_sex"></property>
+		<property name ="User_email" column="User_email"></property>
+		<property name ="User_idcard" column="User_idcard"></property>
+		<property name ="User_su" column="User_su"></property>
+		<property name ="User_pass" column="User_pass"></property>
+		<property name ="User_telenum" column="User_telenum"></property>
+		<property name ="balance" column="balance"></property>
+	</class>
+	<class name="table.Train" table="Train">
+		<id name="Tra_id" column="Tra_id">
+		<generator class="assigned"></generator>
+		</id>
+		<property name ="Tra_max" column="Tra_max"></property>
+		<property name ="Tra_type" column="Tra_type"></property>
+	</class>
+	<class name="table.TT" table="TT">
+		<id name="TT_id" column="TT_id">
+		<generator class="native"></generator>
+		</id>
+		<property name ="Tra_id" column="Tra_id"></property>
+		<property name ="TT_time" column="TT_time"></property>
+		<property name ="TT_leftSeat" column="TT_leftSeat"></property>
+	</class>
+	<class name="table.Time" table="Time">
+		<id name="Tim_id" column="Tim_id">
+		<generator class="native"></generator>
+		</id>
+		<property name ="TT_id" column="TT_id"></property>
+		<property name ="Tim_seq" column="Tim_seq"></property>
+		<property name ="Tim_sta_name" column="Tim_sta_name"></property>
+		<property name ="Tim_distance" column="Tim_distance"></property>
+		<property name ="Tim_start" column="Tim_start"></property>
+		<property name ="Tim_end" column="Tim_end"></property>
+	</class>
+	<class name="table.SE" table="SE">
+		<id name="SE_id" column="SE_id">
+		<generator class="native"></generator>
+		</id>
+		<property name ="Tim_id_start" column="Tim_id"></property>
+		<property name ="Tim_id_end" column="Tim_id1"></property>
+		<property name ="SE_total" column="SE_total"></property>
+		<property name ="selected" column="selected"></property>
+	</class>
+	<class name="table.Seat" table="Seat">
+		<id name="Seat_id" column="Seat_id">
+		<generator class="native"></generator>
+		</id>
+		<property name ="Seat_no" column="Seat_no"></property>
+		<property name ="Seat_stat" column="Seat_stat"></property>
+		<property name ="TT_id" column="TT_id"></property>
+	</class>
+	<class name="table.Ticket" table="Ticket">
+		<id name="Tic_id" column="Tic_id">
+		<generator class="native"></generator>
+		</id>
+		<property name ="SE_id" column="SE_id"></property>
+		<property name ="User_name" column="User_name"></property>
+		<property name ="Seat_id" column="Seat_id"></property>
+		<property name ="Tic_price" column="Tic_price"></property>
+	</class>
+
+</hibernate-mapping>

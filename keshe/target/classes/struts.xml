@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
+<!-- 注意：编程或运行时要联网 -->
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"/>
+	<constant name="struts.convention.action.packages" value="action"/>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	
+	<package name="basicstruts2" extends="struts-default">
+		<interceptors>
+			<!-- 注册自定义拦截器 -->
+			<interceptor name="bosLoginInterceptor" class="interceptor.interceptor">
+			</interceptor>
+			<!-- 定义拦截器栈 -->
+			<interceptor-stack name="myStack">
+				<interceptor-ref name="bosLoginInterceptor">
+				 	<param name="excludeMethods">login,register</param> 
+				</interceptor-ref>
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myStack"/>
+		
+		<!-- 全局结果集定义 -->
+		<global-results>
+			<result name="fail" type="redirect">/index.jsp</result>
+		</global-results>
+	</package>
+	<!-- <global-allowed-methods>*</global-allowed-methods> -->
+<!-- 	<package name="test" namespace="/" extends="struts-default">
+		<global-allowed-methods>*</global-allowed-methods>
+	</package> -->
+</struts>
